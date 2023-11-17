@@ -1,0 +1,168 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String           @id @default(cuid())
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  name            String
+  email           String           @unique
+  password        String
+  profilePicture  String
+  bio             String
+  role            Role             @default(READER)
+  subscriptions   Subscription[]
+  favouriteSeries Favourite[]
+  createdSeries   Series[]
+  seriesComments  SeriesComments[]
+  notifications   Notification[]
+  readingHistory  ReadingHistory[]
+}
+
+model Subscription {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  seriesId  String
+  user      User     @relation(fields: [userId], references: [id])
+  series    Series   @relation(fields: [seriesId], references: [id])
+}
+
+model ReadingHistory {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  seriesId  String
+  chapterId String
+  pageId    String
+
+  chapter Chapter @relation(fields: [chapterId], references: [id])
+  page    Page    @relation(fields: [pageId], references: [id])
+  volume  Volume  @relation(fields: [seriesId], references: [id])
+}
+
+model Notification {
+  id               String           @id @default(cuid())
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  userId           String
+  user             User             @relation(fields: [userId], references: [id])
+  notificationType NotificationType
+  contentId        String
+  isRead           Boolean
+}
+
+model Favourite {
+  id       String @id @default(cuid())
+  userId   String
+  user     User   @relation(fields: [userId], references: [id])
+  seriesId String
+  series   Series @relation(fields: [seriesId], references: [id])
+}
+
+model Series {
+  id             String           @id @default(cuid())
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  title          String
+  description    String
+  userId         String
+  author         User             @relation(fields: [userId], references: [id])
+  subscriptions  Subscription[]
+  seriesTags     SeriesTags[]
+  seriesComments SeriesComments[]
+  Volume         Volume[]
+  favouriteId    String?
+  favourites     Favourite[]
+}
+
+model Volume {
+  id             String           @id @default(cuid())
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  seriesId       String
+  volumeNumber   Int
+  coverImageUrl  String
+  series         Series           @relation(fields: [seriesId], references: [id])
+  Chapter        Chapter[]
+  ReadingHistory ReadingHistory[]
+}
+
+model Chapter {
+  id             String           @id @default(cuid())
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  volumeId       String
+  chapterNumber  Int
+  title          String
+  volume         Volume           @relation(fields: [volumeId], references: [id])
+  Page           Page[]
+  ReadingHistory ReadingHistory[]
+}
+
+model Page {
+  id             String           @id @default(cuid())
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  chapterId      String
+  pageNumber     Int
+  imageUrl       String
+  chapter        Chapter          @relation(fields: [chapterId], references: [id])
+  ReadingHistory ReadingHistory[]
+}
+
+model SeriesTags {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  seriesId  String
+  series    Series   @relation(fields: [seriesId], references: [id])
+  tags      Tag[]
+}
+
+model Tag {
+  id          String     @id @default(cuid())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  seriesTagId String
+  tagName     String
+  seriesTag   SeriesTags @relation(fields: [seriesTagId], references: [id])
+}
+
+model SeriesComments {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  commentText String
+
+  seriesId String
+  userId   String
+  series   Series @relation(fields: [seriesId], references: [id])
+  user     User   @relation(fields: [userId], references: [id])
+}
+
+enum Role {
+  READER
+  CREATOR
+}
+
+enum NotificationType {
+  NEWCHAPTER
+  COMMENT
+  LIKE
+  FOLLOW
+  MODERATION
+  UPDATE
+}
