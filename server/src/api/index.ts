@@ -1,15 +1,3 @@
-import {queryType} from "nexus";
-
-const query = queryType({
-  definition(t) {
-    t.list.field('posts', {
-      type: 'Post',
-      resolve: async (parent, args, ctx) => {
-        // Fetch posts from a data source
-        return [];
-      },
-    });
-  },
-});
-
-export { query }
+export { dateTimeScalar, jsonScalar, timestampScalar } from './types/Scalars';
+export {UserMutations} from './resolvers/mutations/Users';
+export {UserQueries} from './resolvers/queries/Users';

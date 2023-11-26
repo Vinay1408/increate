@@ -23,7 +23,7 @@ model User {
   subscriptions   Subscription[]
   favouriteSeries Favourite[]
   createdSeries   Series[]
-  seriesComments  SeriesComments[]
+  comments        Comment[]
   notifications   Notification[]
   readingHistory  ReadingHistory[]
 }
@@ -73,19 +73,19 @@ model Favourite {
 }
 
 model Series {
-  id             String           @id @default(cuid())
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
-  title          String
-  description    String
-  userId         String
-  author         User             @relation(fields: [userId], references: [id])
-  subscriptions  Subscription[]
-  seriesTags     SeriesTags[]
-  seriesComments SeriesComments[]
-  Volume         Volume[]
-  favouriteId    String?
-  favourites     Favourite[]
+  id            String         @id @default(cuid())
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  title         String
+  description   String
+  thumbnailUrl  String
+  authorId      String
+  author        User           @relation(fields: [authorId], references: [id])
+  subscriptions Subscription[]
+  tags          Tag[]
+  comments      Comment[]
+  volumes       Volume[]
+  favourites    Favourite[]
 }
 
 model Volume {
@@ -96,8 +96,8 @@ model Volume {
   volumeNumber   Int
   coverImageUrl  String
   series         Series           @relation(fields: [seriesId], references: [id])
-  Chapter        Chapter[]
-  ReadingHistory ReadingHistory[]
+  chapter        Chapter[]
+  readingHistory ReadingHistory[]
 }
 
 model Chapter {
@@ -105,6 +105,7 @@ model Chapter {
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
   volumeId       String
+  coverImageUrl  String
   chapterNumber  Int
   title          String
   volume         Volume           @relation(fields: [volumeId], references: [id])
@@ -123,25 +124,16 @@ model Page {
   ReadingHistory ReadingHistory[]
 }
 
-model SeriesTags {
+model Tag {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   seriesId  String
+  tagName   TagName
   series    Series   @relation(fields: [seriesId], references: [id])
-  tags      Tag[]
 }
 
-model Tag {
-  id          String     @id @default(cuid())
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  seriesTagId String
-  tagName     String
-  seriesTag   SeriesTags @relation(fields: [seriesTagId], references: [id])
-}
-
-model SeriesComments {
+model Comment {
   id          String   @id @default(cuid())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -165,4 +157,10 @@ enum NotificationType {
   FOLLOW
   MODERATION
   UPDATE
+}
+
+enum TagName {
+  ACTION
+  ADVENTURE
+  CRIME
 }

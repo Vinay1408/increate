@@ -1,25 +1,11 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.query = void 0;
-const nexus_1 = require("nexus");
-const query = (0, nexus_1.queryType)({
-    definition(t) {
-        t.list.field('posts', {
-            type: 'Post',
-            resolve: (parent, args, ctx) => __awaiter(this, void 0, void 0, function* () {
-                // Fetch posts from a data source
-                return [];
-            }),
-        });
-    },
-});
-exports.query = query;
+exports.UserQueries = exports.UserMutations = exports.timestampScalar = exports.jsonScalar = exports.dateTimeScalar = void 0;
+var Scalars_1 = require("./types/Scalars");
+Object.defineProperty(exports, "dateTimeScalar", { enumerable: true, get: function () { return Scalars_1.dateTimeScalar; } });
+Object.defineProperty(exports, "jsonScalar", { enumerable: true, get: function () { return Scalars_1.jsonScalar; } });
+Object.defineProperty(exports, "timestampScalar", { enumerable: true, get: function () { return Scalars_1.timestampScalar; } });
+var Users_1 = require("./resolvers/mutations/Users");
+Object.defineProperty(exports, "UserMutations", { enumerable: true, get: function () { return Users_1.UserMutations; } });
+var Users_2 = require("./resolvers/queries/Users");
+Object.defineProperty(exports, "UserQueries", { enumerable: true, get: function () { return Users_2.UserQueries; } });
