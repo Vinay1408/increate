@@ -67,19 +67,9 @@ export class UserService {
         throw new Error('Invalid password');
       }
 
-      const token = AuthUtil.generateAuthToken(existingUser);
+      AuthUtil.generateAuthToken(existingUser, ctx);
 
-      const cookieOptions = {
-        httpOnly: true,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        sameSite: true,
-      };
-
-      const cookieString = cookie.serialize('authToken', token, cookieOptions);
-
-      ctx.res.setHeader('Set-Cookie', cookieString);
-
-      return existingUser
+      return existingUser;
     } catch (e) {
       throw new Error(`Login failed from UserService.login: ${e}`);
     }

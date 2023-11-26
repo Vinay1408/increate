@@ -2,15 +2,24 @@ import {Context} from '../context';
 import {User} from "@prisma/client";
 import * as jwt from 'jsonwebtoken';
 import {JwtPayload} from "jsonwebtoken";
+import * as cookie from "cookie";
 
 interface TokenUserData {
   user: User;
 }
 
 export class AuthUtil {
-  public static generateAuthToken(user: any): string {
+  public static generateAuthToken(user: User, ctx: Context): void {
     const token = jwt.sign({ email: user.email }, process.env.SECRET_ENV as string, { expiresIn: '7d' }); // Expires in 7 days
-    return token;
+    const cookieOptions = {
+      httpOnly: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      sameSite: true,
+    };
+
+    const cookieString = cookie.serialize('authToken', token, cookieOptions);
+
+    ctx.res.setHeader('Set-Cookie', cookieString);
   }
 
   public static async verifyAndGetUser(ctx: Context): Promise<User> {
