@@ -34,16 +34,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthUtil = void 0;
 const jwt = __importStar(require("jsonwebtoken"));
+const cookie = __importStar(require("cookie"));
 class AuthUtil {
-    static generateAuthToken(user) {
-        const token = jwt.sign({ email: user.email }, process.env.SECRET_ENV, { expiresIn: '7d' }); // Expires in 7 days
-        return token;
+    static generateAuthToken(user, ctx) {
+        const token = jwt.sign({ email: user.email }, process.env.SECRET_KEY, { expiresIn: '7d' }); // Expires in 7 days
+        const cookieOptions = {
+            httpOnly: true,
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            sameSite: true,
+        };
+        const cookieString = cookie.serialize('authToken', token, cookieOptions);
+        ctx.res.setHeader('Set-Cookie', cookieString);
     }
     static verifyAndGetUser(ctx) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const decoded = AuthUtil.verifyUser(ctx);
-                const user = yield AuthUtil.getUser(decoded.email, ctx);
+                const user = yield AuthUtil.getUser(decoded.email, ctx); // todo: prevent password from being passed back
                 return user;
             }
             catch (e) {
@@ -65,7 +72,7 @@ class AuthUtil {
     static getUser(email, ctx) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const user = yield ctx.prisma.user.findFirst({
+                const user = yield ctx.prisma.user.findUnique({
                     where: {
                         email: email
                     },

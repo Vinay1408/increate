@@ -26,7 +26,7 @@ const prisma = new client_1.PrismaClient();
 const app = (0, express_1.default)();
 const isLocal = Util_1.Util.isLocal();
 const origins = [Util_1.Util.isLocal()];
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 const allowedHeaders = [
     'Accept',
     'Access-Control-Allow-Headers',

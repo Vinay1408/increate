@@ -6,7 +6,7 @@ export class Util {
 
   public static getServerUrl() {
     if (Util.isLocal()) {
-      return 'http://localhost:3001';
+      return `http://localhost:${process.env.PORT || 3000}`;
     }
   }
 }

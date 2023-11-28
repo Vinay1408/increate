@@ -46,6 +46,7 @@ model ReadingHistory {
   user      User     @relation(fields: [userId], references: [id])
   seriesId  String
   chapterId String
+  volumeId  String
   pageId    String
 
   chapter Chapter @relation(fields: [chapterId], references: [id])

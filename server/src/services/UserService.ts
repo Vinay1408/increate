@@ -1,8 +1,7 @@
 import {Context} from "../context";
 import * as bcrypt from 'bcrypt';
-import * as jwt from 'jsonwebtoken';
-import * as cookie from 'cookie';
 import {AuthUtil} from "../util/AuthUtil";
+import {NexusGenRootTypes} from "../typings";
 
 interface RegisterUser {
   name: string;
@@ -16,7 +15,7 @@ interface LoginUser {
 }
 
 export class UserService {
-  public static async register(user: RegisterUser, ctx: Context) {
+  public static async register(user: RegisterUser, ctx: Context): Promise<NexusGenRootTypes['User']> {
     try {
       const existingUser = await ctx.prisma.user.findUnique({
         where: {
@@ -49,7 +48,7 @@ export class UserService {
     }
   }
 
-  public static async login(user: LoginUser, ctx: Context) {
+  public static async login(user: LoginUser, ctx: Context): Promise<NexusGenRootTypes['User']> {
     try {
       const existingUser = await ctx.prisma.user.findUnique({
         where: {
@@ -75,9 +74,9 @@ export class UserService {
     }
   }
 
-  public static async getUsers(ctx: Context) {
+  public static async getUsers(ctx: Context): Promise<NexusGenRootTypes['User'][]> {
     try {
-      const user = AuthUtil.verifyAndGetUser(ctx);
+      const user = await AuthUtil.verifyAndGetUser(ctx);
 
       if (!user) {
         throw new Error('Error retrieving logged in user');

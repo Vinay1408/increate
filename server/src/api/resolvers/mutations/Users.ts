@@ -1,9 +1,10 @@
-import {mutationType, nonNull, stringArg} from "@nexus/schema";
+import {extendType, nonNull} from "@nexus/schema";
 import {User, UserLoginInput, UserRegisterInput} from "../../types/UserResponse";
 import {Context} from "../../../context";
 import {UserService} from "../../../services/UserService";
 
-export const UserMutations = mutationType({
+export const UserMutations = extendType({
+  type: 'Mutation',
   definition(t) {
     t.field('register', {
       type: User,

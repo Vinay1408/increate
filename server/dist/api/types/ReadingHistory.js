@@ -15,6 +15,7 @@ exports.ReadingHistory = (0, schema_1.objectType)({
         t.nonNull.string('userId');
         t.nonNull.field('user', { type: UserResponse_1.User });
         t.nonNull.string('seriesId');
+        t.nonNull.string('volumeId');
         t.nonNull.string('chapterId');
         t.nonNull.string('pageId');
         t.nonNull.field('chapter', { type: ChapterResponse_1.Chapter });

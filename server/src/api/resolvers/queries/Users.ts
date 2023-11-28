@@ -1,9 +1,10 @@
 import {Context} from "../../../context";
-import {nonNull, queryType, list} from "@nexus/schema";
+import {nonNull, queryType, list, extendType} from "@nexus/schema";
 import {User, UserRegisterInput} from "../../types/UserResponse";
 import {UserService} from "../../../services/UserService";
 
-export const UserQueries = queryType({
+export const UserQueries = extendType({
+  type: 'Query',
   definition(t) {
     t.field('getUsers', {
       type: list(User),

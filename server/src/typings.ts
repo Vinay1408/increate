@@ -26,6 +26,10 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  UserLoginInput: { // input type
+    email: string; // String!
+    password: string; // String!
+  }
   UserRegisterInput: { // input type
     email: string; // String!
     name: string; // String!
@@ -222,6 +226,7 @@ export interface NexusGenFieldTypes {
     userId: string; // String!
   }
   Mutation: { // field return type
+    login: NexusGenRootTypes['User'] | null; // User
     register: NexusGenRootTypes['User'] | null; // User
   }
   Notification: { // field return type
@@ -245,7 +250,7 @@ export interface NexusGenFieldTypes {
     updatedAt: NexusGenScalars['Timestamp']; // Timestamp!
   }
   Query: { // field return type
-    ok: boolean; // Boolean!
+    getUsers: Array<NexusGenRootTypes['User'] | null> | null; // [User]
   }
   ReadingHistory: { // field return type
     chapter: NexusGenRootTypes['Chapter']; // Chapter!
@@ -355,6 +360,7 @@ export interface NexusGenFieldTypeNames {
     userId: 'String'
   }
   Mutation: { // field return type name
+    login: 'User'
     register: 'User'
   }
   Notification: { // field return type name
@@ -378,7 +384,7 @@ export interface NexusGenFieldTypeNames {
     updatedAt: 'Timestamp'
   }
   Query: { // field return type name
-    ok: 'Boolean'
+    getUsers: 'User'
   }
   ReadingHistory: { // field return type name
     chapter: 'Chapter'
@@ -457,6 +463,9 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    login: { // args
+      user: NexusGenInputs['UserLoginInput']; // UserLoginInput!
+    }
     register: { // args
       user: NexusGenInputs['UserRegisterInput']; // UserRegisterInput!
     }

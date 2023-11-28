@@ -34,7 +34,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const bcrypt = __importStar(require("bcrypt"));
-const cookie = __importStar(require("cookie"));
 const AuthUtil_1 = require("../util/AuthUtil");
 class UserService {
     static register(user, ctx) {
@@ -82,14 +81,7 @@ class UserService {
                 if (!passwordMatch) {
                     throw new Error('Invalid password');
                 }
-                const token = AuthUtil_1.AuthUtil.generateAuthToken(existingUser);
-                const cookieOptions = {
-                    httpOnly: true,
-                    maxAge: 7 * 24 * 60 * 60 * 1000,
-                    sameSite: true,
-                };
-                const cookieString = cookie.serialize('authToken', token, cookieOptions);
-                ctx.res.setHeader('Set-Cookie', cookieString);
+                AuthUtil_1.AuthUtil.generateAuthToken(existingUser, ctx);
                 return existingUser;
             }
             catch (e) {
@@ -100,7 +92,7 @@ class UserService {
     static getUsers(ctx) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const user = AuthUtil_1.AuthUtil.verifyAndGetUser(ctx);
+                const user = yield AuthUtil_1.AuthUtil.verifyAndGetUser(ctx);
                 if (!user) {
                     throw new Error('Error retrieving logged in user');
                 }

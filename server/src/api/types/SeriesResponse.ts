@@ -1,4 +1,4 @@
-import {objectType} from "@nexus/schema";
+import {inputObjectType, objectType} from "@nexus/schema";
 import {User} from "./UserResponse";
 import {Subscription} from "./SubscriptionResponse";
 import {Favourite} from "./FavouriteResponse";
@@ -24,3 +24,14 @@ export const Series = objectType({
     t.nullable.list.field('favourites', {type:Favourite})
   }
 });
+
+export const SeriesInput = inputObjectType({
+  name: 'SeriesInput',
+  definition(t) {
+    t.nonNull.id('id');
+    t.nonNull.string('title');
+    t.nonNull.string('description');
+    t.nonNull.string('thumbnailUrl');
+    t.nonNull.string('authorId');
+  }
+})

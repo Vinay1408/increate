@@ -41,6 +41,7 @@ type Favourite {
 scalar JSON
 
 type Mutation {
+  login(user: UserLoginInput!): User
   register(user: UserRegisterInput!): User
 }
 
@@ -76,7 +77,7 @@ type Page {
 }
 
 type Query {
-  ok: Boolean!
+  getUsers: [User]
 }
 
 type ReadingHistory {
@@ -152,6 +153,11 @@ type User {
   role: UserRole!
   subscriptions: [Subscription]
   updatedAt: Timestamp!
+}
+
+input UserLoginInput {
+  email: String!
+  password: String!
 }
 
 input UserRegisterInput {

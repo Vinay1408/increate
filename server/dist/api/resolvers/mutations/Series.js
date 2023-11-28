@@ -9,18 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserQueries = void 0;
+exports.SeriesMutations = void 0;
 const schema_1 = require("@nexus/schema");
-const UserResponse_1 = require("../../types/UserResponse");
-const UserService_1 = require("../../../services/UserService");
-exports.UserQueries = (0, schema_1.extendType)({
-    type: 'Query',
+const SeriesResponse_1 = require("../../types/SeriesResponse");
+const SeriesService_1 = require("../../../services/SeriesService");
+exports.SeriesMutations = (0, schema_1.extendType)({
+    type: 'Mutation',
     definition(t) {
-        t.field('getUsers', {
-            type: (0, schema_1.list)(UserResponse_1.User),
-            args: {},
-            resolve: (_, {}, ctx) => __awaiter(this, void 0, void 0, function* () {
-                const resp = yield UserService_1.UserService.getUsers(ctx);
+        t.field('upsertSeries', {
+            type: SeriesResponse_1.Series,
+            args: {
+                series: (0, schema_1.nonNull)(SeriesResponse_1.SeriesInput)
+            },
+            resolve: (_, { series }, ctx) => __awaiter(this, void 0, void 0, function* () {
+                const resp = yield SeriesService_1.SeriesService.upsertSeries(series, ctx);
                 return resp;
             })
         });

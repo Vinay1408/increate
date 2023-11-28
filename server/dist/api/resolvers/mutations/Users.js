@@ -13,7 +13,8 @@ exports.UserMutations = void 0;
 const schema_1 = require("@nexus/schema");
 const UserResponse_1 = require("../../types/UserResponse");
 const UserService_1 = require("../../../services/UserService");
-exports.UserMutations = (0, schema_1.mutationType)({
+exports.UserMutations = (0, schema_1.extendType)({
+    type: 'Mutation',
     definition(t) {
         t.field('register', {
             type: UserResponse_1.User,
