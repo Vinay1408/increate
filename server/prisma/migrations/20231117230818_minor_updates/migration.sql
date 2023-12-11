@@ -3,14 +3,14 @@
 
   - You are about to drop the column `favouriteId` on the `Series` table. All the data in the column will be lost.
   - You are about to drop the column `userId` on the `Series` table. All the data in the column will be lost.
-  - You are about to drop the column `seriesTagId` on the `Tag` table. All the data in the column will be lost.
-  - You are about to alter the column `tagName` on the `Tag` table. The data in that column could be lost. The data in that column will be cast from `VarChar(191)` to `Enum(EnumId(2))`.
+  - You are about to drop the column `seriesTagId` on the `TagResponse` table. All the data in the column will be lost.
+  - You are about to alter the column `tagName` on the `TagResponse` table. The data in that column could be lost. The data in that column will be cast from `VarChar(191)` to `Enum(EnumId(2))`.
   - You are about to drop the `SeriesComments` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `SeriesTags` table. If the table is not empty, all the data it contains will be lost.
   - Added the required column `coverImageUrl` to the `Chapter` table without a default value. This is not possible if the table is not empty.
   - Added the required column `authorId` to the `Series` table without a default value. This is not possible if the table is not empty.
   - Added the required column `thumbnailUrl` to the `Series` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `seriesId` to the `Tag` table without a default value. This is not possible if the table is not empty.
+  - Added the required column `seriesId` to the `TagResponse` table without a default value. This is not possible if the table is not empty.
 
 */
 -- DropForeignKey
@@ -26,7 +26,7 @@ ALTER TABLE `SeriesComments` DROP FOREIGN KEY `SeriesComments_userId_fkey`;
 ALTER TABLE `SeriesTags` DROP FOREIGN KEY `SeriesTags_seriesId_fkey`;
 
 -- DropForeignKey
-ALTER TABLE `Tag` DROP FOREIGN KEY `Tag_seriesTagId_fkey`;
+ALTER TABLE `TagResponse` DROP FOREIGN KEY `Tag_seriesTagId_fkey`;
 
 -- AlterTable
 ALTER TABLE `Chapter` ADD COLUMN `coverImageUrl` VARCHAR(191) NOT NULL;
@@ -38,7 +38,7 @@ ALTER TABLE `Series` DROP COLUMN `favouriteId`,
     ADD COLUMN `thumbnailUrl` VARCHAR(191) NOT NULL;
 
 -- AlterTable
-ALTER TABLE `Tag` DROP COLUMN `seriesTagId`,
+ALTER TABLE `TagResponse` DROP COLUMN `seriesTagId`,
     ADD COLUMN `seriesId` VARCHAR(191) NOT NULL,
     MODIFY `tagName` ENUM('ACTION', 'ADVENTURE', 'CRIME') NOT NULL;
 
@@ -64,7 +64,7 @@ CREATE TABLE `Comment` (
 ALTER TABLE `Series` ADD CONSTRAINT `Series_authorId_fkey` FOREIGN KEY (`authorId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Tag` ADD CONSTRAINT `Tag_seriesId_fkey` FOREIGN KEY (`seriesId`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `TagResponse` ADD CONSTRAINT `Tag_seriesId_fkey` FOREIGN KEY (`seriesId`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Comment` ADD CONSTRAINT `Comment_seriesId_fkey` FOREIGN KEY (`seriesId`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

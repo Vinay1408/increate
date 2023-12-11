@@ -26,6 +26,13 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  SeriesInput: { // input type
+    authorId: string; // String!
+    description: string; // String!
+    id: string; // ID!
+    thumbnailUrl: string; // String!
+    title: string; // String!
+  }
   UserLoginInput: { // input type
     email: string; // String!
     password: string; // String!
@@ -56,6 +63,8 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Chapter: { // root type
+    author: NexusGenRootTypes['User']; // User!
+    authorId: string; // String!
     chapterNumber: number; // Int!
     coverImageUrl: string; // String!
     createdAt: NexusGenScalars['Timestamp']; // Timestamp!
@@ -80,7 +89,7 @@ export interface NexusGenObjects {
   Favourite: { // root type
     createdAt: NexusGenScalars['Timestamp']; // Timestamp!
     id: string; // ID!
-    seires: NexusGenRootTypes['Series']; // Series!
+    series: NexusGenRootTypes['Series']; // Series!
     seriesId: string; // String!
     updatedAt: NexusGenScalars['Timestamp']; // Timestamp!
     user: NexusGenRootTypes['User']; // User!
@@ -98,6 +107,8 @@ export interface NexusGenObjects {
     userId: string; // String!
   }
   Page: { // root type
+    author: NexusGenRootTypes['User']; // User!
+    authorId: string; // String!
     chapter: NexusGenRootTypes['Chapter']; // Chapter!
     chapterId: string; // String!
     createdAt: NexusGenScalars['Timestamp']; // Timestamp!
@@ -120,6 +131,7 @@ export interface NexusGenObjects {
     user: NexusGenRootTypes['User']; // User!
     userId: string; // String!
     volume: NexusGenRootTypes['Volume']; // Volume!
+    volumeId: string; // String!
   }
   Series: { // root type
     author: NexusGenRootTypes['User']; // User!
@@ -171,6 +183,8 @@ export interface NexusGenObjects {
     updatedAt: NexusGenScalars['Timestamp']; // Timestamp!
   }
   Volume: { // root type
+    author: NexusGenRootTypes['User']; // User!
+    authorId: string; // String!
     chapter?: Array<NexusGenRootTypes['Chapter'] | null> | null; // [Chapter]
     coverImageUrl: string; // String!
     createdAt: NexusGenScalars['Timestamp']; // Timestamp!
@@ -195,6 +209,8 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnu
 
 export interface NexusGenFieldTypes {
   Chapter: { // field return type
+    author: NexusGenRootTypes['User']; // User!
+    authorId: string; // String!
     chapterNumber: number; // Int!
     coverImageUrl: string; // String!
     createdAt: NexusGenScalars['Timestamp']; // Timestamp!
@@ -219,7 +235,7 @@ export interface NexusGenFieldTypes {
   Favourite: { // field return type
     createdAt: NexusGenScalars['Timestamp']; // Timestamp!
     id: string; // ID!
-    seires: NexusGenRootTypes['Series']; // Series!
+    series: NexusGenRootTypes['Series']; // Series!
     seriesId: string; // String!
     updatedAt: NexusGenScalars['Timestamp']; // Timestamp!
     user: NexusGenRootTypes['User']; // User!
@@ -228,6 +244,7 @@ export interface NexusGenFieldTypes {
   Mutation: { // field return type
     login: NexusGenRootTypes['User'] | null; // User
     register: NexusGenRootTypes['User'] | null; // User
+    upsertSeries: NexusGenRootTypes['Series'] | null; // Series
   }
   Notification: { // field return type
     contentId: string; // String!
@@ -240,6 +257,8 @@ export interface NexusGenFieldTypes {
     userId: string; // String!
   }
   Page: { // field return type
+    author: NexusGenRootTypes['User']; // User!
+    authorId: string; // String!
     chapter: NexusGenRootTypes['Chapter']; // Chapter!
     chapterId: string; // String!
     createdAt: NexusGenScalars['Timestamp']; // Timestamp!
@@ -264,6 +283,7 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User']; // User!
     userId: string; // String!
     volume: NexusGenRootTypes['Volume']; // Volume!
+    volumeId: string; // String!
   }
   Series: { // field return type
     author: NexusGenRootTypes['User']; // User!
@@ -315,6 +335,8 @@ export interface NexusGenFieldTypes {
     updatedAt: NexusGenScalars['Timestamp']; // Timestamp!
   }
   Volume: { // field return type
+    author: NexusGenRootTypes['User']; // User!
+    authorId: string; // String!
     chapter: Array<NexusGenRootTypes['Chapter'] | null> | null; // [Chapter]
     coverImageUrl: string; // String!
     createdAt: NexusGenScalars['Timestamp']; // Timestamp!
@@ -329,6 +351,8 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Chapter: { // field return type name
+    author: 'User'
+    authorId: 'String'
     chapterNumber: 'Int'
     coverImageUrl: 'String'
     createdAt: 'Timestamp'
@@ -353,7 +377,7 @@ export interface NexusGenFieldTypeNames {
   Favourite: { // field return type name
     createdAt: 'Timestamp'
     id: 'ID'
-    seires: 'Series'
+    series: 'Series'
     seriesId: 'String'
     updatedAt: 'Timestamp'
     user: 'User'
@@ -362,6 +386,7 @@ export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     login: 'User'
     register: 'User'
+    upsertSeries: 'Series'
   }
   Notification: { // field return type name
     contentId: 'String'
@@ -374,6 +399,8 @@ export interface NexusGenFieldTypeNames {
     userId: 'String'
   }
   Page: { // field return type name
+    author: 'User'
+    authorId: 'String'
     chapter: 'Chapter'
     chapterId: 'String'
     createdAt: 'Timestamp'
@@ -398,6 +425,7 @@ export interface NexusGenFieldTypeNames {
     user: 'User'
     userId: 'String'
     volume: 'Volume'
+    volumeId: 'String'
   }
   Series: { // field return type name
     author: 'User'
@@ -449,6 +477,8 @@ export interface NexusGenFieldTypeNames {
     updatedAt: 'Timestamp'
   }
   Volume: { // field return type name
+    author: 'User'
+    authorId: 'String'
     chapter: 'Chapter'
     coverImageUrl: 'String'
     createdAt: 'Timestamp'
@@ -468,6 +498,9 @@ export interface NexusGenArgTypes {
     }
     register: { // args
       user: NexusGenInputs['UserRegisterInput']; // UserRegisterInput!
+    }
+    upsertSeries: { // args
+      series: NexusGenInputs['SeriesInput']; // SeriesInput!
     }
   }
 }

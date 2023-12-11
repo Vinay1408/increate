@@ -6,7 +6,7 @@ const UserResponse_1 = require("./UserResponse");
 const SubscriptionResponse_1 = require("./SubscriptionResponse");
 const FavouriteResponse_1 = require("./FavouriteResponse");
 const VolumeResponse_1 = require("./VolumeResponse");
-const Tag_1 = require("./Tag");
+const TagResponse_1 = require("./TagResponse");
 const CommentResponse_1 = require("./CommentResponse");
 exports.Series = (0, schema_1.objectType)({
     name: 'Series',
@@ -20,7 +20,7 @@ exports.Series = (0, schema_1.objectType)({
         t.nonNull.string('authorId');
         t.nonNull.field('author', { type: UserResponse_1.User });
         t.nullable.list.field('subscriptions', { type: SubscriptionResponse_1.Subscription });
-        t.nullable.list.field('tags', { type: Tag_1.Tag });
+        t.nullable.list.field('tags', { type: TagResponse_1.Tag });
         t.nullable.list.field('comments', { type: CommentResponse_1.Comment });
         t.nullable.list.field('volumes', { type: VolumeResponse_1.Volume });
         t.nullable.list.field('favourites', { type: FavouriteResponse_1.Favourite });

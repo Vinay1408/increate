@@ -3,6 +3,8 @@
 
 
 type Chapter {
+  author: User!
+  authorId: String!
   chapterNumber: Int!
   coverImageUrl: String!
   createdAt: Timestamp!
@@ -31,7 +33,7 @@ scalar DateTime
 type Favourite {
   createdAt: Timestamp!
   id: ID!
-  seires: Series!
+  series: Series!
   seriesId: String!
   updatedAt: Timestamp!
   user: User!
@@ -43,6 +45,7 @@ scalar JSON
 type Mutation {
   login(user: UserLoginInput!): User
   register(user: UserRegisterInput!): User
+  upsertSeries(series: SeriesInput!): Series
 }
 
 type Notification {
@@ -66,6 +69,8 @@ enum NotificationType {
 }
 
 type Page {
+  author: User!
+  authorId: String!
   chapter: Chapter!
   chapterId: String!
   createdAt: Timestamp!
@@ -92,6 +97,7 @@ type ReadingHistory {
   user: User!
   userId: String!
   volume: Volume!
+  volumeId: String!
 }
 
 type Series {
@@ -108,6 +114,14 @@ type Series {
   title: String!
   updatedAt: Timestamp!
   volumes: [Volume]
+}
+
+input SeriesInput {
+  authorId: String!
+  description: String!
+  id: ID!
+  thumbnailUrl: String!
+  title: String!
 }
 
 type Subscription {
@@ -172,6 +186,8 @@ enum UserRole {
 }
 
 type Volume {
+  author: User!
+  authorId: String!
   chapter: [Chapter]
   coverImageUrl: String!
   createdAt: Timestamp!

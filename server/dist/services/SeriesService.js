@@ -14,15 +14,14 @@ const AuthUtil_1 = require("../util/AuthUtil");
 class SeriesService {
     static upsertSeries(series, ctx) {
         return __awaiter(this, void 0, void 0, function* () {
+            const user = yield AuthUtil_1.AuthUtil.verifyAndGetUser(ctx);
             try {
-                const user = yield AuthUtil_1.AuthUtil.verifyAndGetUser(ctx);
                 const existingSeries = yield ctx.prisma.series.findUnique({
                     where: {
                         authorId: user.id,
                         id: series.id
                     }
                 });
-                console.log(existingSeries);
                 if (!existingSeries) {
                     return yield SeriesService.createSeries(series, ctx);
                 }
@@ -45,7 +44,7 @@ class SeriesService {
                         authorId: user.id,
                     },
                     include: {
-                        author: true
+                        author: true,
                     }
                 });
                 return newSeries;
@@ -68,6 +67,9 @@ class SeriesService {
                         title: series.title,
                         thumbnailUrl: series.thumbnailUrl,
                         description: series.description,
+                    },
+                    include: {
+                        author: true,
                     }
                 });
                 return newSeries;

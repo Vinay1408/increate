@@ -14,3 +14,12 @@ export const Subscription = objectType({
     t.nonNull.field('series', {type: Series});
   }
 })
+
+export const SubscriptionInput = objectType({
+  name: 'SubscriptionInput',
+  definition(t) {
+    t.nonNull.id('id');
+    t.nonNull.string('userId');
+    t.nonNull.string('seriesId');
+  }
+})

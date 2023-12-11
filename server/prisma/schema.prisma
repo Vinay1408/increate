@@ -26,6 +26,10 @@ model User {
   comments        Comment[]
   notifications   Notification[]
   readingHistory  ReadingHistory[]
+  createdVolumes  Volume[]
+  createdChapters Chapter[]
+  createdPages    Page[]
+  Tag             Tag[]
 }
 
 model Subscription {
@@ -49,9 +53,10 @@ model ReadingHistory {
   volumeId  String
   pageId    String
 
+  series  Series  @relation(fields: [seriesId], references: [id])
   chapter Chapter @relation(fields: [chapterId], references: [id])
   page    Page    @relation(fields: [pageId], references: [id])
-  volume  Volume  @relation(fields: [seriesId], references: [id])
+  volume  Volume  @relation(fields: [volumeId], references: [id])
 }
 
 model Notification {
@@ -74,19 +79,20 @@ model Favourite {
 }
 
 model Series {
-  id            String         @id @default(cuid())
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  title         String
-  description   String
-  thumbnailUrl  String
-  authorId      String
-  author        User           @relation(fields: [authorId], references: [id])
-  subscriptions Subscription[]
-  tags          Tag[]
-  comments      Comment[]
-  volumes       Volume[]
-  favourites    Favourite[]
+  id             String           @id @default(cuid())
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  title          String
+  description    String
+  thumbnailUrl   String
+  authorId       String
+  author         User             @relation(fields: [authorId], references: [id])
+  subscriptions  Subscription[]
+  tags           Tag[]
+  comments       Comment[]
+  volumes        Volume[]
+  favourites     Favourite[]
+  ReadingHistory ReadingHistory[]
 }
 
 model Volume {
@@ -99,6 +105,8 @@ model Volume {
   series         Series           @relation(fields: [seriesId], references: [id])
   chapter        Chapter[]
   readingHistory ReadingHistory[]
+  authorId       String
+  author         User             @relation(fields: [authorId], references: [id])
 }
 
 model Chapter {
@@ -112,6 +120,8 @@ model Chapter {
   volume         Volume           @relation(fields: [volumeId], references: [id])
   Page           Page[]
   ReadingHistory ReadingHistory[]
+  authorId       String
+  author         User             @relation(fields: [authorId], references: [id])
 }
 
 model Page {
@@ -123,6 +133,8 @@ model Page {
   imageUrl       String
   chapter        Chapter          @relation(fields: [chapterId], references: [id])
   ReadingHistory ReadingHistory[]
+  authorId       String
+  author         User             @relation(fields: [authorId], references: [id])
 }
 
 model Tag {
@@ -130,7 +142,9 @@ model Tag {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   seriesId  String
+  userId    String
   tagName   TagName
+  user      User     @relation(fields: [userId], references: [id])
   series    Series   @relation(fields: [seriesId], references: [id])
 }
 

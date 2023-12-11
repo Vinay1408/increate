@@ -13,7 +13,7 @@ import bodyParser from 'body-parser';
 const prisma = new PrismaClient()
 const app = express();
 const isLocal = Util.isLocal()
-const origins = [Util.isLocal()];
+const origins = [Util.getServerUrl()];
 const PORT = process.env.PORT || 3000;
 const allowedHeaders = [
   'Accept',
@@ -36,8 +36,8 @@ const allowedHeaders = [
 const allowedMethods = ['GET', 'POST', 'PUT', 'PATCH', 'OPTIONS', 'HEAD'];
 const serverUrl = Util.getServerUrl();
 app.use(cookieParser());
-app.use(bodyParser.json()); // Add this line to parse JSON requests
-app.use(bodyParser.urlencoded({ extended: true })); // Add this line to parse URL-encoded requests
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
 const server = new ApolloServer({
   schema: getSchema(),
   plugins: [],

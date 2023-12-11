@@ -25,7 +25,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const prisma = new client_1.PrismaClient();
 const app = (0, express_1.default)();
 const isLocal = Util_1.Util.isLocal();
-const origins = [Util_1.Util.isLocal()];
+const origins = [Util_1.Util.getServerUrl()];
 const PORT = process.env.PORT || 3000;
 const allowedHeaders = [
     'Accept',
@@ -48,8 +48,8 @@ const allowedHeaders = [
 const allowedMethods = ['GET', 'POST', 'PUT', 'PATCH', 'OPTIONS', 'HEAD'];
 const serverUrl = Util_1.Util.getServerUrl();
 app.use((0, cookie_parser_1.default)());
-app.use(body_parser_1.default.json()); // Add this line to parse JSON requests
-app.use(body_parser_1.default.urlencoded({ extended: true })); // Add this line to parse URL-encoded requests
+app.use(body_parser_1.default.json());
+app.use(body_parser_1.default.urlencoded({ extended: true }));
 const server = new server_1.ApolloServer({
     schema: (0, makeSchema_1.getSchema)(),
     plugins: [],

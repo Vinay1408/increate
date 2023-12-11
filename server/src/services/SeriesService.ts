@@ -1,5 +1,7 @@
 import {Context} from "../context";
 import {AuthUtil} from "../util/AuthUtil";
+import {NexusGenRootTypes} from "../typings";
+import e from "express";
 
 export interface Series {
   id: string;
@@ -11,15 +13,16 @@ export interface Series {
 
 export class SeriesService {
   public static async upsertSeries(series: Series, ctx: Context) {
+    const user = await AuthUtil.verifyAndGetUser(ctx);
+
     try {
-      const user = await AuthUtil.verifyAndGetUser(ctx);
       const existingSeries = await ctx.prisma.series.findUnique({
         where: {
           authorId: user.id,
           id: series.id
         }
       });
-      console.log(existingSeries)
+
       if (!existingSeries) {
         return await SeriesService.createSeries(series, ctx);
       }
@@ -29,7 +32,7 @@ export class SeriesService {
     }
   }
 
-  public static async createSeries(series: Series, ctx: Context) {
+  public static async createSeries(series: Series, ctx: Context) : Promise<NexusGenRootTypes['Series']> {
     try {
       const user = await AuthUtil.verifyAndGetUser(ctx);
       const newSeries = await ctx.prisma.series.create({
@@ -40,7 +43,7 @@ export class SeriesService {
           authorId: user.id,
         },
         include: {
-          author: true
+          author: true,
         }
       });
       return newSeries;
@@ -49,7 +52,7 @@ export class SeriesService {
     }
   }
 
-  public static async updateSeries(series: Series, ctx: Context) {
+  public static async updateSeries(series: Series, ctx: Context) : Promise<NexusGenRootTypes['Series']>  {
     try {
       const user = await AuthUtil.verifyAndGetUser(ctx);
       const newSeries = await ctx.prisma.series.update({
@@ -61,6 +64,9 @@ export class SeriesService {
           title: series.title,
           thumbnailUrl: series.thumbnailUrl,
           description: series.description,
+        },
+        include: {
+          author: true,
         }
       });
       return newSeries;

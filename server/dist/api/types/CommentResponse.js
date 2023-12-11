@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Comment = void 0;
+exports.CommentInput = exports.Comment = void 0;
 const schema_1 = require("@nexus/schema");
 const UserResponse_1 = require("./UserResponse");
 const SeriesResponse_1 = require("./SeriesResponse");
@@ -15,5 +15,14 @@ exports.Comment = (0, schema_1.objectType)({
         t.nonNull.string('userId');
         t.nonNull.field('user', { type: UserResponse_1.User });
         t.nonNull.field('series', { type: SeriesResponse_1.Series });
+    }
+});
+exports.CommentInput = (0, schema_1.inputObjectType)({
+    name: 'CommentInput',
+    definition(t) {
+        t.nonNull.id('id');
+        t.nonNull.string('commentText');
+        t.nonNull.string('seriesId');
+        t.nonNull.string('userId');
     }
 });

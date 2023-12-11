@@ -19,3 +19,14 @@ export const Notification = objectType({
     t.nonNull.boolean('isRead');
   }
 })
+
+export const NotificationInput = objectType({
+  name: 'NotificationInput',
+  definition(t) {
+    t.nonNull.string('userId');
+    t.nonNull.field('user', {type:User});
+    t.nonNull.field('notificationType', {type:NotificationType});
+    t.nonNull.string('contentId');
+    t.nonNull.boolean('isRead');
+  }
+})

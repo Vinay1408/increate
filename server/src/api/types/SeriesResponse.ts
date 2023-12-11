@@ -3,7 +3,7 @@ import {User} from "./UserResponse";
 import {Subscription} from "./SubscriptionResponse";
 import {Favourite} from "./FavouriteResponse";
 import {Volume} from "./VolumeResponse";
-import {Tag} from "./Tag";
+import {Tag} from "./TagResponse";
 import {Comment} from "./CommentResponse";
 
 export const Series = objectType({

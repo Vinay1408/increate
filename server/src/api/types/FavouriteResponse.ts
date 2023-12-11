@@ -1,4 +1,4 @@
-import {objectType} from "@nexus/schema";
+import {inputObjectType, objectType} from "@nexus/schema";
 import {User} from "./UserResponse";
 import {Series} from "./SeriesResponse";
 
@@ -11,6 +11,15 @@ export const Favourite = objectType({
     t.nonNull.string('userId');
     t.nonNull.field('user', {type:User});
     t.nonNull.string('seriesId');
-    t.nonNull.field('seires', {type:Series})
+    t.nonNull.field('series', {type:Series})
+  }
+})
+
+export const FavouriteInput = inputObjectType({
+  name: 'FavouriteInput',
+  definition(t) {
+    t.nonNull.id('id');
+    t.nonNull.string('userId');
+    t.nonNull.string('seriesId');
   }
 })

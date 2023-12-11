@@ -110,7 +110,7 @@ CREATE TABLE `SeriesTags` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Tag` (
+CREATE TABLE `TagResponse` (
     `id` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
@@ -178,7 +178,7 @@ ALTER TABLE `Page` ADD CONSTRAINT `Page_chapterId_fkey` FOREIGN KEY (`chapterId`
 ALTER TABLE `SeriesTags` ADD CONSTRAINT `SeriesTags_seriesId_fkey` FOREIGN KEY (`seriesId`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Tag` ADD CONSTRAINT `Tag_seriesTagId_fkey` FOREIGN KEY (`seriesTagId`) REFERENCES `SeriesTags`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `TagResponse` ADD CONSTRAINT `Tag_seriesTagId_fkey` FOREIGN KEY (`seriesTagId`) REFERENCES `SeriesTags`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `SeriesComments` ADD CONSTRAINT `SeriesComments_seriesId_fkey` FOREIGN KEY (`seriesId`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
