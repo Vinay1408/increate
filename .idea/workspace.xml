@@ -5,63 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b882ad28-f395-4006-8a2d-6fa1239440a3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/prisma/migrations/20231129170037_added_ownership_to_volumes_chapters_and_pages/migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/prisma/migrations/20231209211816_changes_and_fixes/migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/mutations/Chapters.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/mutations/Comments.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/mutations/Favourites.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/mutations/Notifications.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/mutations/Pages.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/mutations/Subscriptions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/mutations/Tags.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/mutations/Volumes.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/queries/Comments.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/queries/Favourites.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/queries/Notifications.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/queries/Subscriptions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/api/resolvers/queries/Tags.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/services/ChapterService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/services/CommentService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/services/FavouriteService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/services/NotificationService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/services/PageService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/services/ReadingHistoryService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/services/SubscriptionService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/services/TagService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/services/VolumeService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/api/types/ChapterResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/api/types/ChapterResponse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/api/types/CommentResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/api/types/CommentResponse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/api/types/FavouriteResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/api/types/FavouriteResponse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/api/types/NotificationResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/api/types/NotificationResponse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/api/types/PageResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/api/types/PageResponse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/api/types/SeriesResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/api/types/SeriesResponse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/api/types/SubscriptionResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/api/types/SubscriptionResponse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/api/types/VolumeResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/api/types/VolumeResponse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/services/SeriesService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/services/SeriesService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/util/Util.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/util/Util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/.prisma/client/edge.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.prisma/client/edge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/.prisma/client/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.prisma/client/index-browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/.prisma/client/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.prisma/client/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/.prisma/client/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.prisma/client/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/prisma/migrations/20230930060403_init/migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/prisma/migrations/20230930060403_init/migration.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/prisma/migrations/20231117230818_minor_updates/migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/prisma/migrations/20231117230818_minor_updates/migration.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/server/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/types/ChapterResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/types/ChapterResponse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/types/CommentResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/types/CommentResponse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/types/FavouriteResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/types/FavouriteResponse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/types/NotificationResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/types/NotificationResponse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/types/PageResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/types/PageResponse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/types/SeriesResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/types/SeriesResponse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/types/SubscriptionResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/types/SubscriptionResponse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/types/Tag.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/types/TagResponse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/types/VolumeResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/types/VolumeResponse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/services/SeriesService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/services/SeriesService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/typings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/typings.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/util/Util.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/util/Util.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/setupTests.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +80,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ui" />
       <recent name="$PROJECT_DIR$/server" />
       <recent name="$PROJECT_DIR$/server/src/prisma" />
       <recent name="$PROJECT_DIR$/server/src" />
@@ -147,7 +112,7 @@
       <workItem from="1701815987999" duration="2422000" />
       <workItem from="1701853447170" duration="123000" />
       <workItem from="1701876243147" duration="968000" />
-      <workItem from="1702142912918" duration="15417000" />
+      <workItem from="1702142912918" duration="16009000" />
     </task>
     <servers />
   </component>
